@@ -29,23 +29,31 @@ my_tree = ttk.Treeview(root)
 my_tree['columns'] = ('Id', 'Name', 'Price')
 
 # Format our columns
-my_tree.column("#0", width=120, minwidth=25)
+my_tree.column("#0", width=0, stretch=NO)
 my_tree.column("Id", anchor=W, width=80)
 my_tree.column("Name", anchor=W, width=120)
 my_tree.column("Price", anchor=CENTER, width=80)
 
 # Create Headings
-my_tree.heading("#0", text='Label', anchor=W)
+my_tree.heading("#0", text='', anchor=W)
 my_tree.heading("Id", text='ID', anchor=W)
 my_tree.heading("Name", text='Name', anchor=W)
 my_tree.heading("Price", text='Price', anchor=CENTER)
 
 # Add data
-my_tree.insert(parent='', index='end', iid=0, text='Parent', values=(1, 'Apple', 100))
-my_tree.insert(parent='', index='end', iid=1, text='Parent', values=(2, 'Microsoft', 90))
-my_tree.insert(parent='', index='end', iid=2, text='Parent', values=(3, 'Amazon', 500))
-# Add child
-my_tree.insert(parent='0', index='end', iid=3, text='Child', values=(1.1, 'Tesla', 150))
+data = [
+    [1, 'Apple', 100],
+    [2, 'Microsoft', 90],
+    [3, 'Amazon', 500],
+]
+count = 0
+for i in data:
+    my_tree.insert(parent='', index='end', iid=count, text='', values=(i[0], i[1], i[2]))
+    count += 1
+
+# my_tree.insert(parent='', index='end', iid=0, text='Parent', values=(1, 'Apple', 100))
+# my_tree.insert(parent='', index='end', iid=1, text='Parent', values=(2, 'Microsoft', 90))
+# my_tree.insert(parent='', index='end', iid=2, text='Parent', values=(3, 'Amazon', 500))
 
 # Pack to the screen
 my_tree.pack(pady=20)
