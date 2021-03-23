@@ -1,5 +1,5 @@
 from tkinter import *
-import tkinter.messagebox
+from tkinter import messagebox
 from tkinter import filedialog
 from tkinter import ttk
 from loguru import logger
@@ -11,7 +11,7 @@ def empty_func():
 
 
 def about_func():
-    tkinter.messagebox.showinfo('About Us', 'Working in progress')
+    messagebox.showinfo('About Us', 'Working in progress')
 
 
 def browse_file():
