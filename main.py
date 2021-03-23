@@ -19,6 +19,10 @@ def browse_file():
     print(file_name)
 
 
+def play_action():
+    print('You clicked PLAY!')
+
+
 root = Tk()
 root.title('GUI with Tkinter')
 root.geometry('900x600')
@@ -56,7 +60,7 @@ my_tree.tag_configure('odd', background='white')
 count = 0
 
 for i in data:
-    if count % 2 ==0:
+    if count % 2 == 0:
         my_tree.insert(parent='', index='end', iid=count, text='', values=(i[0], i[1], i[2]), tags=('even',))
     else:
         my_tree.insert(parent='', index='end', iid=count, text='', values=(i[0], i[1], i[2]), tags=('odd',))
@@ -109,6 +113,11 @@ left_frame.pack(side=LEFT, padx=10)
 
 label1 = Label(left_frame, text="Left Frame")
 label1.pack(padx=3, pady=3)
+
+# Image Button
+update_btn = PhotoImage(file='images/play.png')
+img_btn = Button(left_frame, image=update_btn, command=play_action)
+img_btn.pack(pady=10)
 
 button1 = Button(left_frame, text="Button1")
 button1.pack(padx=3, pady=3)
