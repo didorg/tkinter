@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter.messagebox
 from tkinter import filedialog
 from tkinter import ttk
+from loguru import logger
 
 
 def empty_func():
@@ -21,6 +22,9 @@ def browse_file():
 root = Tk()
 root.title('GUI with Tkinter')
 root.geometry('900x600')
+
+# Add some Styles
+style = ttk.Style()
 
 # Treeview ****************************************************
 my_tree = ttk.Treeview(root)
@@ -46,9 +50,16 @@ data = [
     [2, 'Microsoft', 90],
     [3, 'Amazon', 500],
 ]
+# Config row colors
+my_tree.tag_configure('even', background='#f4f4f4')
+my_tree.tag_configure('odd', background='white')
 count = 0
+
 for i in data:
-    my_tree.insert(parent='', index='end', iid=count, text='', values=(i[0], i[1], i[2]))
+    if count % 2 ==0:
+        my_tree.insert(parent='', index='end', iid=count, text='', values=(i[0], i[1], i[2]), tags=('even',))
+    else:
+        my_tree.insert(parent='', index='end', iid=count, text='', values=(i[0], i[1], i[2]), tags=('odd',))
     count += 1
 
 # my_tree.insert(parent='', index='end', iid=0, text='Parent', values=(1, 'Apple', 100))
@@ -56,7 +67,7 @@ for i in data:
 # my_tree.insert(parent='', index='end', iid=2, text='Parent', values=(3, 'Amazon', 500))
 
 # Pack to the screen
-my_tree.pack(pady=20)
+my_tree.pack(pady=15)
 # End of Treeview *********************************************
 
 # Menu ********************************************************
